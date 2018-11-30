@@ -1,0 +1,68 @@
+
+######################
+Number of subKeys to test:     16
+Number of candidates per key:  255
+Correct positions: 
+Subkey:   0, rank: 152, peak: 0.099965, relative peak: 0.688981, sample point:  689
+Subkey:   1, rank:   1, peak: 0.143783, relative peak: 1.000000, sample point:  815
+Subkey:   2, rank: 222, peak: 0.093309, relative peak: 0.613923, sample point:  451
+Subkey:   3, rank: 184, peak: 0.096883, relative peak: 0.669054, sample point:   86
+Subkey:   4, rank: 163, peak: 0.098152, relative peak: 0.726541, sample point:  712
+Subkey:   5, rank:   4, peak: 0.139274, relative peak: 0.843318, sample point:  331
+Subkey:   6, rank:  50, peak: 0.112534, relative peak: 0.757076, sample point:  102
+Subkey:   7, rank:  56, peak: 0.113028, relative peak: 0.769820, sample point:   73
+Subkey:   8, rank:   2, peak: 0.141949, relative peak: 0.980663, sample point:  925
+Subkey:   9, rank: 112, peak: 0.107876, relative peak: 0.780325, sample point:  797
+Subkey:  10, rank:   7, peak: 0.131583, relative peak: 0.829183, sample point:  450
+Subkey:  11, rank: 132, peak: 0.102987, relative peak: 0.632715, sample point:  937
+Subkey:  12, rank:  94, peak: 0.105517, relative peak: 0.709577, sample point:  752
+Subkey:  13, rank: 141, peak: 0.100826, relative peak: 0.716389, sample point:  494
+Subkey:  14, rank: 193, peak: 0.096092, relative peak: 0.640374, sample point:  532
+Subkey:  15, rank: 186, peak: 0.095334, relative peak: 0.598351, sample point:  624
+
+Best guesses: 
+Subkey:   0, rank:   1, peak: 0.145091, relative peak: 1.000000, sample point:  614
+Subkey:   1, rank:   1, peak: 0.143783, relative peak: 1.000000, sample point:  815
+Subkey:   2, rank:   1, peak: 0.151988, relative peak: 1.000000, sample point:  598
+Subkey:   3, rank:   1, peak: 0.144806, relative peak: 1.000000, sample point:  790
+Subkey:   4, rank:   1, peak: 0.135095, relative peak: 1.000000, sample point:  124
+Subkey:   5, rank:   1, peak: 0.165150, relative peak: 1.000000, sample point:  579
+Subkey:   6, rank:   1, peak: 0.148643, relative peak: 1.000000, sample point:  165
+Subkey:   7, rank:   1, peak: 0.146824, relative peak: 1.000000, sample point:  696
+Subkey:   8, rank:   1, peak: 0.144748, relative peak: 1.000000, sample point:  585
+Subkey:   9, rank:   1, peak: 0.138245, relative peak: 1.000000, sample point:  196
+Subkey:  10, rank:   1, peak: 0.158690, relative peak: 1.000000, sample point:  696
+Subkey:  11, rank:   1, peak: 0.162770, relative peak: 1.000000, sample point:  173
+Subkey:  12, rank:   1, peak: 0.148704, relative peak: 1.000000, sample point:  811
+Subkey:  13, rank:   1, peak: 0.140742, relative peak: 1.000000, sample point:  627
+Subkey:  14, rank:   1, peak: 0.150056, relative peak: 1.000000, sample point:  177
+Subkey:  15, rank:   1, peak: 0.159328, relative peak: 1.000000, sample point:  786
+######################
+Minimum correlation value: 0.6889813978813296
+Subkey nr: 0 Rank nr: 152
+Minimum correlation value: 0.6139234676421822
+Subkey nr: 2 Rank nr: 222
+Minimum correlation value: 0.5983505724040973
+Subkey nr: 15 Rank nr: 186
+Candidate index needed: 240
+Candidate index needed: 244
+Candidate index needed: 235
+Candidate index needed: 245
+Candidate index needed: 181
+Candidate index needed: 233
+Candidate index needed: 240
+Candidate index needed: 247
+Candidate index needed: 254
+Candidate index needed: 208
+Candidate index needed: 175
+Candidate index needed: 237
+Candidate index needed: 249
+Candidate index needed: 235
+Candidate index needed: 186
+######################
+Number of needed guesses calculated = 201020942751041267030430858240000000
+With 1 G/s encryptions, time needed is: 
+years: 6374332279015768234
+days: 34
+hours: 19
+seconds: 858

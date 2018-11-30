@@ -1,0 +1,175 @@
+
+*************
+Opened traces\psoc6\mbedtls\cw308_3v3_CM4\1200_samples_80000_traces_data.trs, #traces 80000, #samples 1200 (Float32), #data 32
+Number of traces: 80000
+Using FFT: 
+referencestart: 200
+referenceend: 600
+maxShift: 100
+corvalMin: 0.3
+Sample range: 10:1000
+backward = false
+multibit = 0
+hd = false
+lra = false
+condavg = false
+inccpa = true
+Running attack with # traces: 80000
+
+Jlsca running in Julia version: 1.0.0, 1 processes/1 workers/6 threads per worker
+
+DPA parameters
+attack:       AES Sbox CIPHER KL128 FORWARD
+mode:         CIPHER
+key length:   KL128
+direction:    FORWARD
+xor:          false
+analysis:     Incremental CPA
+leakages:     HW
+maximization: abs global max
+data at:      1
+targets:      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+known key:    2b7e151628aed2a6abf7158809cf4f3c
+
+phase: 1 / 1, #targets 16
+
+Attacking columns 1:991 out of 991 columns (run 1 out of 1)
+Running processor "Incremental correlation" on trace range 1:1:80000, 1 data passes, 2 sample passes
+Incremental CPA on range 1:991 produced (991, 4096) correlation matrix
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 1, phase: 1, #candidates 256, "Sbox out"
+rank:   1, candidate: 0xbb, peak: 0.018798 @ 362
+rank:   2, candidate: 0x9e, peak: 0.016095 @ 354
+rank:   3, candidate: 0x4b, peak: 0.014876 @ 758
+rank:   4, candidate: 0x32, peak: 0.014754 @ 656
+rank: 242, correct  : 0x2b, peak: 0.010241 @ 368
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 2, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x7e, peak: 0.025579 @ 731
+rank:   2, candidate: 0xc4, peak: 0.019071 @ 733
+rank:   3, candidate: 0xe8, peak: 0.018987 @ 734
+rank:   4, candidate: 0xe9, peak: 0.016851 @ 735
+rank:   5, candidate: 0xc7, peak: 0.016400 @ 735
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 3, phase: 1, #candidates 256, "Sbox out"
+rank:   1, candidate: 0x10, peak: 0.016457 @ 182
+rank:   2, candidate: 0x20, peak: 0.016379 @ 448
+rank:   3, candidate: 0x75, peak: 0.016019 @ 218
+rank:   4, candidate: 0x00, peak: 0.015691 @ 789
+rank:  11, correct  : 0x15, peak: 0.014535 @ 707
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 4, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x16, peak: 0.033933 @ 500
+rank:   2, candidate: 0xb1, peak: 0.017429 @ 499
+rank:   3, candidate: 0x78, peak: 0.017045 @ 517
+rank:   4, candidate: 0xd0, peak: 0.016902 @ 494
+rank:   5, candidate: 0xb0, peak: 0.016668 @ 128
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 5, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x28, peak: 0.019505 @ 488
+rank:   2, candidate: 0x5b, peak: 0.018498 @ 44
+rank:   3, candidate: 0xfc, peak: 0.017381 @ 468
+rank:   4, candidate: 0x87, peak: 0.017241 @ 485
+rank:   5, candidate: 0x7f, peak: 0.016605 @ 68
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 6, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0xae, peak: 0.031607 @ 416
+rank:   2, candidate: 0x55, peak: 0.019500 @ 419
+rank:   3, candidate: 0x69, peak: 0.018079 @ 415
+rank:   4, candidate: 0x7b, peak: 0.016492 @ 422
+rank:   5, candidate: 0x5c, peak: 0.016009 @ 287
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 7, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0xd2, peak: 0.030305 @ 760
+rank:   2, candidate: 0x46, peak: 0.017899 @ 761
+rank:   3, candidate: 0x1b, peak: 0.017329 @ 761
+rank:   4, candidate: 0xc6, peak: 0.016435 @ 46
+rank:   5, candidate: 0x98, peak: 0.016342 @ 321
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 8, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0xa6, peak: 0.020390 @ 595
+rank:   2, candidate: 0xd3, peak: 0.016359 @ 846
+rank:   3, candidate: 0x62, peak: 0.016097 @ 894
+rank:   4, candidate: 0xf8, peak: 0.015387 @ 949
+rank:   5, candidate: 0xd6, peak: 0.015057 @ 136
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 9, phase: 1, #candidates 256, "Sbox out"
+rank:   1, candidate: 0x2d, peak: 0.015079 @ 96
+rank:   2, candidate: 0xef, peak: 0.015018 @ 948
+rank:   3, candidate: 0xc9, peak: 0.014956 @ 920
+rank:   4, candidate: 0xd6, peak: 0.014936 @ 254
+rank:  15, correct  : 0xab, peak: 0.013833 @ 611
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 10, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0xf7, peak: 0.029717 @ 540
+rank:   2, candidate: 0x21, peak: 0.020008 @ 525
+rank:   3, candidate: 0x56, peak: 0.017940 @ 532
+rank:   4, candidate: 0x65, peak: 0.017052 @ 466
+rank:   5, candidate: 0xba, peak: 0.016668 @ 279
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 11, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x15, peak: 0.047031 @ 469
+rank:   2, candidate: 0x58, peak: 0.016403 @ 49
+rank:   3, candidate: 0xd3, peak: 0.016224 @ 284
+rank:   4, candidate: 0xc6, peak: 0.015311 @ 680
+rank:   5, candidate: 0x52, peak: 0.015230 @ 59
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 12, phase: 1, #candidates 256, "Sbox out"
+rank:   1, candidate: 0x1b, peak: 0.016322 @ 558
+rank:   2, candidate: 0xab, peak: 0.015819 @ 758
+rank:   3, candidate: 0xdb, peak: 0.015263 @ 540
+rank:   4, candidate: 0x49, peak: 0.015244 @ 181
+rank: 213, correct  : 0x88, peak: 0.010585 @ 541
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 13, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x09, peak: 0.019936 @ 733
+rank:   2, candidate: 0xfd, peak: 0.015625 @ 675
+rank:   3, candidate: 0xf8, peak: 0.015597 @ 903
+rank:   4, candidate: 0xe4, peak: 0.015589 @ 244
+rank:   5, candidate: 0x65, peak: 0.015294 @ 831
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 14, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0xcf, peak: 0.024827 @ 624
+rank:   2, candidate: 0x4d, peak: 0.018095 @ 625
+rank:   3, candidate: 0x8c, peak: 0.017489 @ 615
+rank:   4, candidate: 0xb9, peak: 0.016763 @ 182
+rank:   5, candidate: 0x04, peak: 0.016413 @ 628
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 15, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x4f, peak: 0.035586 @ 572
+rank:   2, candidate: 0x86, peak: 0.018534 @ 565
+rank:   3, candidate: 0xa0, peak: 0.017799 @ 573
+rank:   4, candidate: 0x6f, peak: 0.017617 @ 448
+rank:   5, candidate: 0x97, peak: 0.016839 @ 966
+Results @ 80000 rows, 991 cols (80000 rows consumed)
+target: 16, phase: 1, #candidates 256, "Sbox out"
+rank:   1, correct  : 0x3c, peak: 0.025232 @ 375
+rank:   2, candidate: 0x0e, peak: 0.016387 @ 872
+rank:   3, candidate: 0xfa, peak: 0.015946 @ 97
+rank:   4, candidate: 0x78, peak: 0.015438 @ 355
+rank:   5, candidate: 0x8b, peak: 0.015212 @ 14
+recovered key material: bb7e101628aed2a62df7151b09cf4f3c
+recovered key: bb7e101628aed2a62df7151b09cf4f3c
+knownkey match: false
+
+found key: UInt8[0xbb, 0x7e, 0x10, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0x2d, 0xf7, 0x15, 0x1b, 0x09, 0xcf, 0x4f, 0x3c]
+known key: UInt8[0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c]
+MATCH ? false
+
+####
+Match on keyByte  0 : false
+Match on keyByte  1 : true
+Match on keyByte  2 : false
+Match on keyByte  3 : true
+Match on keyByte  4 : true
+Match on keyByte  5 : true
+Match on keyByte  6 : true
+Match on keyByte  7 : true
+Match on keyByte  8 : false
+Match on keyByte  9 : true
+Match on keyByte 10 : true
+Match on keyByte 11 : false
+Match on keyByte 12 : true
+Match on keyByte 13 : true
+Match on keyByte 14 : true
+Match on keyByte 15 : true

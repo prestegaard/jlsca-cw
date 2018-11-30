@@ -1,0 +1,39 @@
+
+######################
+Number of subKeys to test:     16
+Number of candidates per key:  5
+Correct positions: 
+Subkey:   0, rank: 242, peak: 0.010241, relative peak: 0.544792, sample point:  368
+Subkey:   1, rank:   1, peak: 0.025579, relative peak: 1.000000, sample point:  731
+Subkey:   2, rank:  11, peak: 0.014535, relative peak: 0.883211, sample point:  707
+Subkey:   3, rank:   1, peak: 0.033933, relative peak: 1.000000, sample point:  500
+Subkey:   4, rank:   1, peak: 0.019505, relative peak: 1.000000, sample point:  488
+Subkey:   5, rank:   1, peak: 0.031607, relative peak: 1.000000, sample point:  416
+Subkey:   6, rank:   1, peak: 0.030305, relative peak: 1.000000, sample point:  760
+Subkey:   7, rank:   1, peak: 0.020390, relative peak: 1.000000, sample point:  595
+Subkey:   8, rank:  15, peak: 0.013833, relative peak: 0.917369, sample point:  611
+Subkey:   9, rank:   1, peak: 0.029717, relative peak: 1.000000, sample point:  540
+Subkey:  10, rank:   1, peak: 0.047031, relative peak: 1.000000, sample point:  469
+Subkey:  11, rank: 213, peak: 0.010585, relative peak: 0.648511, sample point:  541
+Subkey:  12, rank:   1, peak: 0.019936, relative peak: 1.000000, sample point:  733
+Subkey:  13, rank:   1, peak: 0.024827, relative peak: 1.000000, sample point:  624
+Subkey:  14, rank:   1, peak: 0.035586, relative peak: 1.000000, sample point:  572
+Subkey:  15, rank:   1, peak: 0.025232, relative peak: 1.000000, sample point:  375
+
+Best guesses: 
+Subkey:   0, rank:   1, peak: 0.018798, relative peak: 1.000000, sample point:  362
+Subkey:   1, rank:   1, peak: 0.025579, relative peak: 1.000000, sample point:  731
+Subkey:   2, rank:   1, peak: 0.016457, relative peak: 1.000000, sample point:  182
+Subkey:   3, rank:   1, peak: 0.033933, relative peak: 1.000000, sample point:  500
+Subkey:   4, rank:   1, peak: 0.019505, relative peak: 1.000000, sample point:  488
+Subkey:   5, rank:   1, peak: 0.031607, relative peak: 1.000000, sample point:  416
+Subkey:   6, rank:   1, peak: 0.030305, relative peak: 1.000000, sample point:  760
+Subkey:   7, rank:   1, peak: 0.020390, relative peak: 1.000000, sample point:  595
+Subkey:   8, rank:   1, peak: 0.015079, relative peak: 1.000000, sample point:   96
+Subkey:   9, rank:   1, peak: 0.029717, relative peak: 1.000000, sample point:  540
+Subkey:  10, rank:   1, peak: 0.047031, relative peak: 1.000000, sample point:  469
+Subkey:  11, rank:   1, peak: 0.016322, relative peak: 1.000000, sample point:  558
+Subkey:  12, rank:   1, peak: 0.019936, relative peak: 1.000000, sample point:  733
+Subkey:  13, rank:   1, peak: 0.024827, relative peak: 1.000000, sample point:  624
+Subkey:  14, rank:   1, peak: 0.035586, relative peak: 1.000000, sample point:  572
+Subkey:  15, rank:   1, peak: 0.025232, relative peak: 1.000000, sample point:  375
