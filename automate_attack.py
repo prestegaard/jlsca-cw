@@ -1,58 +1,94 @@
-import subprocess, os
-
-os.putenv('JULIA_NUM_THREADS', '6')
-os.popen("SET")
-print ("### Set JULIA_NUM_THREADS=6")
-
-# Traces should be stored in traces/target/crypto/measurement
-
-## Local setup
-cw_knownkey = "cw_knownkey.npy"
-target      = "psoc6"
-crypto      = "mbedtls"
-measurement = "cw308_3v3_CM4"
-num_traces  = "80000"
-num_samples = "1200"
-date_string = "2018.08.10-10.36.05" 
-
-trace_location = os.path.join("traces",target,crypto,measurement,num_samples+"_samples_"+num_traces+"_traces_data","traces", date_string)
-log_location = os.path.join("log",target,crypto,measurement)
-results_log_file = os.path.join(log_location, 'results_brute_force.log')
-
-if not os.path.exists(log_location):
-    os.makedirs(log_location)
-
-SKIP_TRS_GENERATION = 0
-ALIGN = 0
-FFT_ENABLED = 1
+import subprocess
+import os
+import argparse
+import importlib.util
+import time
+import logging
+import Framework.JlscaAnalysis as JlscaAnalysis
+from Framework.Utility import WrappedFixedIndentingLog as WrappedFormatting
+from python_log_indenter import IndentedLoggerAdapter
 
 
-#Samples to FFT aligning referenced new bordes from sample trim
-FFT_reference_start = 200
-FFT_reference_stop =  600
-FFT_max_shift = 100
-FFT_corVal_min = 0.3
-FFT_window = 30 # Only for specific MBEDTLS attack
-
-#Trim sample range
-Sample_low = 10  
-Sample_high = 1000 
+root_dir, root_file = os.path.split(os.path.realpath(__file__))
 
 
-attack = 'inc_cpa'
-normal_attack = True
-multibit_attack = 0
+# Fixed paths for toolchain
+#JuliaIncCpaAttack = os.path.join(root_dir, "Framework", "inc_cpa.jl")
+#JuliaCwToTrs = os.path.join(root_dir, "Framework", "cw_to_trs.jl")
 
-if multibit_attack:
-  attack = 'multibit'
 
-MBEDTLS_ATTACK = False
-if MBEDTLS_ATTACK:
-  normal_attack = False
+def parse_command_line():
 
-SHOW_PLOTS_JLSCA = 1
-SHOW_PLOTS_PYTHON = 1
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', '--local_setup',      action='store',      help="Project LocalSetup file")
+    parser.add_argument('-v', '--verbose',          action='store_true', help="Enable verbose printing to log")
+    return parser.parse_args()
 
+def logger_setup(ProjectDir, args):
+    # Output dirs
+    LogDir = os.path.join(ProjectDir, "_log")
+    ReportDir = os.path.join(ProjectDir, "_report")
+
+    # Create log and report directories  if necessary
+    if not os.path.exists(LogDir):
+        os.makedirs(LogDir)
+
+    if not os.path.exists(ReportDir):
+        os.makedirs(ReportDir)
+
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    #logfile = os.path.join(LogDir, "analysis-{}.log".format(timestr))
+    logfile = os.path.join(LogDir, "_log.log")
+
+    logFormatter = logging.Formatter("%(asctime)s [%(levelname)-5.5s]  %(message)s")
+    rootLogger =logging.getLogger()
+    #rootLogger = logging.getLogger()
+    rootLogger.setLevel(logging.DEBUG)
+
+    fileHandler = logging.FileHandler(logfile)
+    fileHandler.setFormatter(logFormatter)
+    fileHandler.setLevel(logging.DEBUG)
+    rootLogger.addHandler(fileHandler)
+
+    consoleHandler = logging.StreamHandler()
+    #consoleHandler.setFormatter(logFormatter)
+    consoleHandler.setFormatter(WrappedFormatting(fmt='%(asctime)-8s %(levelname)-8s %(message)s',
+                                                  datefmt='%H:%M:%S',
+                                                  width=150,
+                                                  indent=18))
+    if args.verbose:
+        consoleHandler.setLevel(logging.DEBUG)
+    else:
+        consoleHandler.setLevel(logging.INFO)
+    rootLogger.addHandler(consoleHandler)
+
+def main():
+    args = parse_command_line()
+
+    # Load LocalSetup from user input
+    spec = importlib.util.spec_from_file_location(args.local_setup, os.path.join(os.getcwd(), args.local_setup))
+    LocalSetup = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(LocalSetup)
+
+    # Setup and start logging
+    logger_setup(LocalSetup.ProjectDir, args)
+    logger = logging.getLogger()
+
+    # Prepare for Julia execution
+    logger.info("Preparing OS Env to run Julia with 8 cores")
+    logger.debug("Calling OS: SET JULIA_NUM_THREADS=8")
+    os.putenv('JULIA_NUM_THREADS', '8')
+
+    logger.info("Running JLSCA analysis")
+    # Select attack backend, at some point use LocalSetup?
+    JlscaAnalysis.jlsca_analysis(root_dir, LocalSetup.ProjectDir, args.local_setup)
+
+
+
+    # Exit program
+    logger.info("End of program")
+    exit(0)
+'''
 # Prepare results file with new test params
 result_file = open(results_log_file, 'a')
 test_param_str = "New test {} with params: ".format(attack)
@@ -83,75 +119,14 @@ result_file.write(test_param_str)
 result_file.write("\n")
 result_file.close()
 
-
-# traceNumList is used to test different amounts of traces in the provided data set
-#traceNumList = [num_traces,'65536','32768','16384','8194','4096','2048','1024','512','256','128','64']
-#traceNumList = ['32000', '16000','8000','4000','2000','1000','500','250','125','75']
-#traceNumList = [num_traces]
-traceNumList = ['1000']
-if ALIGN:
-  print ("### Align and convert trs to cwp")
-  trs_file = os.path.join("traces",target,crypto,measurement,num_samples+"_samples_"+num_traces+"_traces_data.trs")
-  #cmd = "julia inc_cpa.jl {} {} {} {} {} {} {} {} {} {}".format(
-  julia_dir = os.path.join("C:/","","Users","hapr","AppData","Local","Julia-0.6.4","bin","julia.exe")
-  #julia_dir = "julia"
-  cmd = "{} align_and_convert_to_cwp.jl {} {} {} {} {} {} {} {} {} {}".format(
-      julia_dir, \
-      trs_file, \
-      num_traces, 
-      FFT_ENABLED, \
-      FFT_reference_start, \
-      FFT_reference_stop, \
-      FFT_max_shift, \
-      FFT_corVal_min, \
-      Sample_low, \
-      Sample_high, \
-      SHOW_PLOTS_JLSCA)
-  print ("### cmd: {}".format(cmd))
-  subprocess.call(cmd)
-  exit()
-
 for traceNum in traceNumList:
   trs_file = os.path.join("traces",target,crypto,measurement,num_samples+"_samples_"+traceNum+"_traces_data.trs")
-  if not SKIP_TRS_GENERATION:
-    print ("### Converting CW project to JlSca trs format")
-    cmd = "julia cw_to_jlsca.jl {} {} {}".format(
-      trace_location, \
-      trs_file, \
-      traceNum)
-    print ("### cmd: {}".format(cmd))
-    subprocess.call(cmd)
+
   
   logFileAttack = os.path.join(log_location, "{}_samples_{}_traces_{}_jlsca.log".format(num_samples, traceNum, attack))
   
   if normal_attack:
-    print ("### Execute attack Incremental Correlation Power Analysis")
-    #julia_dir = os.path.join("C:/","","Users","hapr","AppData","Local","Julia-0.6.4","bin","julia.exe")
-    julia_dir = "julia"
-    cmd = "{} inc_cpa.jl {} {} {} {} {} {} {} {} {} {}".format(
-        julia_dir, \
-        trs_file, \
-        FFT_ENABLED, \
-        FFT_reference_start, \
-        FFT_reference_stop, \
-        FFT_max_shift, \
-        FFT_corVal_min, \
-        Sample_low, \
-        Sample_high, \
-        multibit_attack, \
-        SHOW_PLOTS_JLSCA)
-
-    if FFT_ENABLED:
-      path, filename = os.path.split(logFileAttack)
-      filename = filename.replace("_{}_jlsca.log".format(attack), "_with_fft_start{}_end{}_shift{}_corval{}_from{}_to{}_{}_jlsca.log".format(
-        FFT_reference_start, \
-        FFT_reference_stop, \
-        FFT_max_shift, \
-        FFT_corVal_min, \
-        Sample_low, \
-        Sample_high, \
-        attack))
-      logFileAttack = os.path.join(path, filename)
+    a = 2
     
   if MBEDTLS_ATTACK:
     print ("### Execute attack MBED TLS specific incremental Correlation Power Analysis")
@@ -176,19 +151,15 @@ for traceNum in traceNumList:
       attack))
     logFileAttack = os.path.join(path, filename)
 
-  f = open(logFileAttack, "w")
-  print ("### cmd: {}".format(cmd))
-  subprocess.call(cmd, stdout=f)
-  f.close()
-  f = open(logFileAttack, "r")
+
   for line in f:
     if "target: 1" in line:
         break
-    print line,
+    print(line)
   f.close()
 
   print ("### Parse logs and execute brute force attack")
-  cmd = "python3 brute_force.py -i {} -k {} -p {}".format(logFileAttack, cw_knownkey, SHOW_PLOTS_PYTHON)
+  cmd = "python3 JlscaBruteForceCalculation.py -i {} -k {} -p {}".format(logFileAttack, cw_knownkey, SHOW_PLOTS_PYTHON)
 
   path, filename = os.path.split(logFileAttack)
   filename = filename.replace("_jlsca.log", "_results.log")
@@ -201,7 +172,7 @@ for traceNum in traceNumList:
   for line in f:
    if "Fill out global list G" in line:
        break
-   print line,
+   print(line)
   f.close()
   
   
@@ -216,4 +187,10 @@ for traceNum in traceNumList:
 
 result_file = open(results_log_file, 'a')
 result_file.write("\n")
-result_file.close()
+result_file.close()'' \
+
+'''
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()

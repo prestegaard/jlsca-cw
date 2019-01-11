@@ -1,2 +1,3 @@
 traces/
 *.pyc
+.idea/
